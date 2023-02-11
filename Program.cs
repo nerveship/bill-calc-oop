@@ -2,21 +2,25 @@
 
 public class Bills
 {
-    public Bills()
-    {
-        Console.WriteLine("We just made a bills instance");
-    }
-
-    private static decimal min_income = 0;
-    public decimal income;
+    //Initalise values
+    private static decimal Min_Income = 0;
+    public decimal Income;
+    public int BillNo;
+    public List<float> NoOfBills = new List<float>();
 
     public bool ValidIncome()
     {
-        if (income > min_income)
+        if (Income > Min_Income)
         {
             return true;
         }
         return false;
+    }
+
+    //Constructor
+    public Bills(decimal inIncome)
+    {
+        inIncome = Income;
     }
 };
 
@@ -24,11 +28,15 @@ class BillCalculator
 {
     public static void Main()
     {
-        Bills userBills = new Bills();
+        Bills userBills = new Bills(0);
+        Console.WriteLine("Welcome! Let's calculate your bills and savings for this month!");
+        Console.WriteLine("Press any key to continue at any time");
+        Console.ReadKey();
+        Console.Clear();
 
         Console.WriteLine("How much income have you made this month?");
 
-        userBills.income = Convert.ToDecimal(Console.ReadLine());
+        userBills.Income = Convert.ToDecimal(Console.ReadLine());
         userBills.ValidIncome();
     }
 }
