@@ -6,7 +6,8 @@ public class Bills
     private static decimal Min_Income = 0;
     public decimal Income;
     public int BillNo;
-    public List<float> SumOfBills = new List<float>();
+    public List<decimal> SumOfBills = new List<decimal>();
+    public float Savings;
 
     //Checks if the users income is valid or not
     public bool ValidIncome()
@@ -24,8 +25,15 @@ public class Bills
         for (int i = 0; i < BillNo; i++)
         {
             Console.WriteLine($"Bill #{i + 1}: ");
-            SumOfBills.Add(Convert.ToInt32(Console.ReadLine()));
+            SumOfBills.Add(Convert.ToDecimal(Console.ReadLine()));
         }
+
+    }
+
+    //Get bill total
+    public decimal BillTotal()
+    {
+        return SumOfBills.Sum();
     }
 
     //Constructor
@@ -54,9 +62,15 @@ class BillCalculator
         userBills.ValidIncome();
         Console.Clear();
 
-        //Get users number of bills
+        //Get users number of bills and adds them together
         Console.WriteLine("How many bills do you have this month?");
         userBills.BillNo = Convert.ToInt32(Console.ReadLine());
         userBills.BillAccum();
+        userBills.BillTotal();
+        Console.Clear();
+
+        //Gets users savings
+        Console.WriteLine("How much will you be saving this month?");
+        userBills.Savings = Convert.ToInt32(Console.ReadLine());
     }
 }
