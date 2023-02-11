@@ -7,7 +7,7 @@ public class Bills
     public decimal Income;
     public int BillNo;
     public List<decimal> SumOfBills = new List<decimal>();
-    public float Savings;
+    public decimal Savings;
 
     //Checks if the users income is valid or not
     public bool ValidIncome()
@@ -36,6 +36,16 @@ public class Bills
         return SumOfBills.Sum();
     }
 
+    public decimal FinalTotal()
+    {
+        return BillTotal() - Savings;
+    }
+
+    public decimal Leftover()
+    {
+        return Income - BillTotal() - Savings;
+    }
+
     //Constructor
     public Bills(decimal inIncome)
     {
@@ -52,7 +62,7 @@ class BillCalculator
 
         //Welcome message
         Console.WriteLine("Welcome! Let's calculate your bills and savings for this month!");
-        Console.WriteLine("Press any key to continue at any time");
+        Console.WriteLine("Press enter to continue at any time");
         Console.ReadKey();
         Console.Clear();
 
@@ -72,5 +82,11 @@ class BillCalculator
         //Gets users savings
         Console.WriteLine("How much will you be saving this month?");
         userBills.Savings = Convert.ToInt32(Console.ReadLine());
+        Console.Clear();
+
+        //Shows final counts
+        Console.WriteLine("Your bill total comes to £" + userBills.BillTotal());
+        Console.WriteLine("Your savings comes to £" + userBills.Savings);
+        Console.WriteLine("Your leftover cash comes to £" + userBills.Leftover());
     }
 }
